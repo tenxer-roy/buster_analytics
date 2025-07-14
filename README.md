@@ -27,8 +27,6 @@ Lab session summarizer for Raspberry pi, running on Debian Buster
 | `buster_analytics_v3.sh` | Sorted by Start Time, deduplicated sessions |
 | `buster_analytics_v4_final.sh` | Added Progress bar for easy visualization, fully cron-ready |
 
-[Download the scripts from HERE](https://drive.google.com/drive/folders/1paUxCKjhScmKo-suXi1Y2d5GlsDxJOsn?usp=sharing).
-
 ---
 
 ## Usage Instructions
