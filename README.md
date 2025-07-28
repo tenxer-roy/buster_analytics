@@ -1,8 +1,8 @@
-# Buster_Analytics
-Lab session summarizer for Raspberry pi, running on Debian Buster
+# Shell_Analytics
+Lab session summarizer for Raspberry pi, running on Debian shell
 
 ## Overview  
-`buster_analytics` is a shell script designed to help **electronics engineers** and **Linux users** to analyze usage logs from Raspberry Pi associated with labs that are under development & not released. This script works with **Debian Buster only** pi devices. It parses `/var/log/analytics.log` to identify user sessions, calculate durations, and flag overuse patterns.
+`shell_analytics` is a shell script designed to help **electronics engineers** and **Linux users** to analyze usage logs from Raspberry Pi associated with labs that are under development & not released. This script works with both **Buster and Bullseye** pi devices. It parses `/var/log/analytics.log` to identify user sessions, calculate durations, and flag overuse patterns.
 
 ---
 
@@ -14,7 +14,7 @@ Lab session summarizer for Raspberry pi, running on Debian Buster
 - Sorts session reports by **Start Time**.
 - Filters out `device_idle`, internal domains, and null users.
 - Shows the result in a table in shell.
-- Works on **Raspberry Pi** with **Debian buster**.
+- Works on **Raspberry Pi** with both **Buster and Bullseye**.
 
 ---
 
@@ -27,7 +27,7 @@ Lab session summarizer for Raspberry pi, running on Debian Buster
 | `buster_analytics_v3.sh.bak` | Sorted by Start Time, deduplicated sessions |
 | `buster_analytics_v4.sh.bak` | Added Progress bar for easy visualization, fully cron-ready |
 | `buster_analytics_v5.sh` | Latest version, handled `SessionEnd` missing  |
-
+| `bullseye_analytics_v1.sh` | Latest version, ported from `buster_analytics_v5.sh`  |
 
 ---
 
@@ -35,7 +35,7 @@ Lab session summarizer for Raspberry pi, running on Debian Buster
 
 ### Manual Run
 ```bash
-bash buster_analytics_v4_final.sh
+bash buster_analytics_v5.sh
 ```
 
 ### Optional Flags
@@ -91,7 +91,7 @@ Pure Shell: Works out of the box with `bash`, `awk`, and `date`. No need for `jq
 If you're an **electronics engineer** who’s new to Linux:
 - These scripts are plug-and-play.
 - You can **customize time ranges**, **change log paths**, or **auto-save reports** with cron.
-- Safe to run on **Raspberry Pi**, **BeagleBone**, or any ARM/Debian device running on **Debian Buster**.
+- Safe to run on **Raspberry Pi**, **BeagleBone**, or any ARM/Debian device running on **Debian Buster or Bullseye**.
 
 ---
 
@@ -112,7 +112,7 @@ crontab -e
 
 Add this line:
 ```cron
-0 6 * * * bash /home/pi/buster_analytics_v4_final.sh > /home/pi/saved_analytics/analytics_$(date +\%Y\%m\%d).txt 2>/dev/null
+0 6 * * * bash /home/pi/buster_analytics_v5.sh > /home/pi/saved_analytics/analytics_$(date +\%Y\%m\%d).txt 2>/dev/null
 ```
 
 This will save a new `.txt` file daily in `/home/pi/saved_analytics/`.
@@ -123,6 +123,6 @@ This will save a new `.txt` file daily in `/home/pi/saved_analytics/`.
 
 To test it every minute:
 ```cron
-* * * * * bash /home/pi/buster_analytics_v4_final.sh > /home/pi/saved_analytics/test_run_$(date +\%Y\%m\%d_%H%M).txt 2>/dev/null
+* * * * * bash /home/pi/buster_analytics_v5.sh > /home/pi/saved_analytics/test_run_$(date +\%Y\%m\%d_%H%M).txt 2>/dev/null
 ```
 
