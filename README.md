@@ -83,7 +83,7 @@ bash buster_analytics_v5.sh -t 14 -f /home/pi/mylog.log
 ## Dependencies
 
 Pure Shell: Works out of the box with `bash`, `awk`, and `date`. No need for `jq`, Python, or any external library.
-
+If get error at line 4, install gawk by running `sudo apt-get install -y gawk`
 ---
 
 ## Notes
